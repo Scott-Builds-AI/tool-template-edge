@@ -1,0 +1,40 @@
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# env files
+.env*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# Build / cache
+.turbo/
+.eslintcache
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Test coverage
+coverage/
+*.lcov
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/*.local.json
