@@ -1,0 +1,17 @@
+{
+  "slug": "your-tool-slug",
+  "name": "Your Tool Name",
+  "description": "Replace this description with one sentence about your tool.",
+  "version": "0.1.0",
+  "runtime": "edge",
+  "scopes": ["keys.read"],
+  "providers": ["openai"],
+  "homepage": "https://your-tool.example.com",
+  "callback_url": "https://your-tool.example.com/start",
+  "owner": {
+    "name": "Your Name",
+    "github": "your-github-handle"
+  },
+  "sdk_version": "^0.1.0",
+  "category": "uncategorised"
+}

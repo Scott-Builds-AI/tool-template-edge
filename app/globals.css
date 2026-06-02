@@ -1,0 +1,81 @@
+/* Mounts the OpenKey AI design tokens + HubHeader styles. */
+@import "@openkeyai/ui/css";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--okai-color-bg);
+  color: var(--okai-color-foreground);
+  font-family: var(--okai-font-sans);
+  font-size: var(--okai-fs-base);
+  line-height: var(--okai-lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Push page content below the fixed HubHeader (56px tall). */
+body {
+  padding-top: var(--okai-header-h);
+  min-height: 100vh;
+}
+
+/* The simplest possible "card on a navy background" so the template renders
+   pleasantly out of the box. Tool authors will replace these. */
+.tool-shell {
+  max-width: 720px;
+  margin: 48px auto;
+  padding: 0 24px;
+}
+
+.tool-card {
+  background-color: var(--okai-color-surface);
+  border: 1px solid var(--okai-color-border);
+  border-radius: var(--okai-radius-xl);
+  padding: 32px;
+  box-shadow: var(--okai-shadow-md);
+}
+
+.tool-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--okai-radius-full);
+  border: none;
+  background: linear-gradient(
+    135deg,
+    var(--okai-color-accent),
+    var(--okai-color-accent-bright)
+  );
+  color: white;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter var(--okai-dur-fast) var(--okai-ease);
+}
+.tool-button:hover,
+.tool-button:focus-visible {
+  filter: brightness(1.1);
+  outline: none;
+}
+.tool-button:disabled {
+  filter: grayscale(0.4);
+  cursor: not-allowed;
+}
+
+.tool-result {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: var(--okai-color-surface-raised);
+  border-radius: var(--okai-radius-lg);
+  font-family: var(--okai-font-mono);
+  font-size: var(--okai-fs-sm);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.tool-muted {
+  color: var(--okai-color-foreground-muted);
+  font-size: var(--okai-fs-sm);
+}
