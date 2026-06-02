@@ -1,0 +1,31 @@
+name: Deploy
+
+# Auto-deploys to Cloudflare Workers on every push to `main`.
+#
+# Setup checklist before this can succeed (one-time per tool repo):
+#
+#   1. Create the R2 ISR cache bucket referenced in wrangler.jsonc:
+#        npx wrangler r2 bucket create your-tool-slug-cache
+#
+#   2. Push runtime secrets the tool needs (HUB_URL, etc.):
+#        npx wrangler secret put HUB_URL
+#
+#   3. Make sure CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID are available
+#      to this repo. Easiest: set them once at the org level with all-
+#      repositories visibility (see Scott-Builds-AI/.github README).
+#
+#   4. Add your tool's custom domain to Cloudflare and uncomment the
+#      `routes` block in wrangler.jsonc.
+#
+# After those, every push to main triggers OpenNext build + wrangler deploy.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    uses: Scott-Builds-AI/.github/.github/workflows/tool-deploy.yml@main
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

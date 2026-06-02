@@ -8,26 +8,8 @@ on:
 
 jobs:
   ci:
-    uses: Scott-Builds-AI/.github/.github/workflows/ci.yml@main
+    # Lint + typecheck + test + okai-scan — see
+    # Scott-Builds-AI/.github/.github/workflows/tool-ci.yml for what runs.
+    uses: Scott-Builds-AI/.github/.github/workflows/tool-ci.yml@main
     with:
-      package-manager: "pnpm"
-      # Lint + typecheck are aliased in package.json for a one-pass tsc.
-      # Build is skipped here — Cloudflare Pages or the deploy pipeline
-      # (Phase 11) runs the full OpenNext build.
-      run-build: false
-      run-test: false
-
-  scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - name: okai-scan
-        run: pnpm exec okai-scan
+      run-test: false  # template ships no tests; tool authors flip to true
