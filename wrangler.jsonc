@@ -1,0 +1,63 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // ────────────────────────────────────────────────────────────────────────
+  // PLACEHOLDERS — find-replace these before deploying:
+  //   your-tool-slug         → your tool's slug (matches tool.json#slug)
+  //   your-tool.example.com  → your tool's deployed custom domain
+  //
+  // The auto-scaffolder (hub Phase 13) does these substitutions for you when
+  // it spawns a new tool from a passing idea-hub vote. If you cloned this
+  // template by hand, do them now.
+  // ────────────────────────────────────────────────────────────────────────
+
+  "name": "your-tool-slug",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-05-17",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  "observability": {
+    "enabled": true
+  },
+
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "your-tool-slug"
+    }
+  ],
+
+  // Required for OpenNext's ISR cache. Create with:
+  //   npx wrangler r2 bucket create your-tool-slug-cache
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "your-tool-slug-cache"
+    }
+  ],
+
+  "images": {
+    "binding": "IMAGES"
+  },
+
+  // Once your custom domain is added to Cloudflare:
+  //   "routes": [{ "pattern": "your-tool.example.com", "custom_domain": true }]
+  // For now we leave it commented so a fresh `wrangler dev` works without
+  // domain setup.
+
+  // Runtime secrets — push with:
+  //   npx wrangler secret put COOKIE_SECRET            # 32 random bytes, base64
+  //   npx wrangler secret put HUB_URL                  # https://openkeyai.com (or staging.openkeyai.com)
+  //
+  // The hub URL is technically optional (defaults to https://openkeyai.com in
+  // the SDK) but pin it explicitly so staging vs production environments are
+  // unambiguous.
+  "vars": {
+    "HUB_URL": "https://openkeyai.com"
+  }
+}

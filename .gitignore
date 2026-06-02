@@ -1,8 +1,11 @@
 node_modules/
 .next/
+.open-next/
 out/
 dist/
 build/
+next-env.d.ts
+tsconfig.tsbuildinfo
 
 # Cloudflare
 .wrangler/
