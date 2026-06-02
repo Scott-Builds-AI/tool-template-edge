@@ -59,13 +59,20 @@ pnpm dev
 # Visit http://localhost:3000/start?token=<paste-a-test-jwt> to seed the cookie.
 # A JWT can be minted from the hub browser console — see "Smoke testing" below.
 
-# 5. Deploy
+# 5. One-time Cloudflare setup
 #  - Create the R2 ISR cache bucket:
 #      npx wrangler r2 bucket create YOUR_SLUG-cache
 #  - Push runtime vars:
 #      npx wrangler secret put HUB_URL   # https://openkeyai.com (or staging)
-#  - Deploy:
-#      pnpm cf:deploy
+#  - Make sure CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID secrets are
+#    available to this repo (set them once at the org level — see the
+#    Scott-Builds-AI/.github README for the gh secret set commands).
+
+# 6. Deploy
+#  - Auto: every push to `main` triggers .github/workflows/deploy.yml,
+#    which uses the shared tool-deploy.yml workflow (Phase 11) to run
+#    okai-scan → opennextjs-cloudflare build → wrangler deploy.
+#  - Manual / staging: `pnpm cf:deploy` from your laptop.
 ```
 
 ## Smoke testing locally
