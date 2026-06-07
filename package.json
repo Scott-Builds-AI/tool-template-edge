@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@openkeyai/sdk": "^0.1.0",
-    "@openkeyai/ui": "^0.1.0",
+    "@openkeyai/ui": "^1.0.0",
     "next": "^16.2.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

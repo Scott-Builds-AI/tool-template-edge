@@ -14,12 +14,14 @@ Pick edge when your tool is mostly:
 
 If you need long execution (> 30s CPU), large memory, ffmpeg, headless browsers, or ML libraries — use [`tool-template-container`](https://github.com/Scott-Builds-AI/tool-template-container) instead.
 
+> **v1 of the design system shipped.** `@openkeyai/ui@1.0.0` brings warm coral palette, Material 3 elevation, light + dark themes, Roboto Flex display font, and five base components (`<Button>`, `<Card>`, `<Input>`/`<Select>`/`<Textarea>`, `<Badge>`, `<Stat>`). Scaffolds from this template inherit it automatically. See the [v1 changelog](https://github.com/OpenKeyAI/hub-ui/blob/main/CHANGELOG.md).
+
 ## What's in the box
 
 | File | Purpose |
 |---|---|
 | `app/layout.tsx` | Mounts `@openkeyai/ui` CSS + `<HubHeader />`. **Required** — the `okai-scan` linter blocks PRs that remove either. |
-| `app/page.tsx` | Stand-in home page. Shows the verified JWT claims + a "Fetch & use OpenAI key" demo button. **Replace with your tool's actual UI.** |
+| `app/page.tsx` | Stand-in home page. Demonstrates `<Card>`, `<Stat>`, `<Badge>`, `<Button>` from `@openkeyai/ui` v1. Shows the verified JWT claims + a "Fetch & use OpenAI key" demo button. **Replace with your tool's actual UI.** |
 | `app/start/route.ts` | Receives the JWT from the hub's redirect, verifies it, stores it in an HTTP-only cookie. |
 | `app/api/demo-fetch/route.ts` | Demo handler showing the `SecureKey` round-trip. Delete it once you have your real handlers. |
 | `lib/session.ts` | `getSession()` / `getSessionToken()` helpers — wrappers around `@openkeyai/sdk`'s `session.verify`. |
