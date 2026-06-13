@@ -51,17 +51,18 @@ export default async function HomePage() {
             )}
           </div>
           <h1
-            className="okai-display"
+            className="lower"
             style={{
               fontSize: 36,
               lineHeight: 1.05,
               margin: 0,
+              fontWeight: 700,
             }}
           >
-            It works.
+            it works.
           </h1>
-          <p className="tool-muted" style={{ margin: 0 }}>
-            You&apos;re signed in via OpenKey AI. The JWT round-trip (hub →{" "}
+          <p className="tool-muted lower" style={{ margin: 0, fontSize: 13 }}>
+            &gt; you&apos;re signed in via openkey ai. the jwt round-trip (hub →{" "}
             <code>/start</code> → cookie → server component → render) just
             succeeded.
           </p>
