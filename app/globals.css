@@ -7,69 +7,79 @@ body {
   padding: 0;
   background-color: var(--okai-color-bg);
   color: var(--okai-color-foreground);
-  font-family: var(--okai-font-sans);
+  font-family: var(--font-display), "JetBrains Mono", ui-monospace, monospace;
   font-size: var(--okai-fs-base);
   line-height: var(--okai-lh-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Push page content below the fixed HubHeader (56px tall). */
+/* Force JetBrains Mono on every text-rendering element so legacy
+   inline-styled buttons / inputs / textareas inherit the terminal face. */
+button, input, select, textarea {
+  font-family: var(--font-display), "JetBrains Mono", ui-monospace, monospace !important;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.20);
+}
+
+/* v2 HubHeader uses position: sticky — do NOT add body padding-top.
+   The header is in normal flow at the top of body content and sticks
+   to the viewport on scroll. Adding padding-top would create a visible
+   empty band above the header on first load that "collapses" on scroll. */
 body {
-  padding-top: var(--okai-header-h);
   min-height: 100vh;
 }
 
-/* The simplest possible "card on a navy background" so the template renders
-   pleasantly out of the box. Tool authors will replace these. */
+/* Mono shell — terminal card on void canvas. Sits immediately under the
+   header with minimal breathing room (16px margin = ~1 line height). */
 .tool-shell {
-  max-width: 720px;
-  margin: 48px auto;
+  max-width: 1100px;
+  margin: 16px auto;
   padding: 0 24px;
 }
 
 .tool-card {
   background-color: var(--okai-color-surface);
   border: 1px solid var(--okai-color-border);
-  border-radius: var(--okai-radius-xl);
-  padding: 32px;
-  box-shadow: var(--okai-shadow-md);
+  border-radius: var(--okai-radius-md);
+  padding: 24px;
 }
 
+/* Primary CTA — white fill, black text, 2px radius, 700 weight.
+   The mono "go" button. */
 .tool-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
-  border-radius: var(--okai-radius-full);
+  padding: 11px 18px;
+  border-radius: var(--okai-radius-xs);
   border: none;
-  background: linear-gradient(
-    135deg,
-    var(--okai-color-accent),
-    var(--okai-color-accent-bright)
-  );
-  color: white;
+  background: var(--okai-color-accent);
+  color: var(--okai-color-on-accent);
   font: inherit;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
-  transition: filter var(--okai-dur-fast) var(--okai-ease);
+  transition: filter 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .tool-button:hover,
 .tool-button:focus-visible {
-  filter: brightness(1.1);
+  filter: brightness(1.08);
   outline: none;
 }
 .tool-button:disabled {
-  filter: grayscale(0.4);
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .tool-result {
   margin-top: 24px;
   padding: 16px;
-  background-color: var(--okai-color-surface-raised);
-  border-radius: var(--okai-radius-lg);
-  font-family: var(--okai-font-mono);
+  background-color: var(--okai-color-surface-2);
+  border: 1px solid var(--okai-color-border);
+  border-radius: var(--okai-radius-sm);
+  font-family: var(--font-display), "JetBrains Mono", ui-monospace, monospace;
   font-size: var(--okai-fs-sm);
   white-space: pre-wrap;
   word-break: break-all;
@@ -78,4 +88,10 @@ body {
 .tool-muted {
   color: var(--okai-color-foreground-muted);
   font-size: var(--okai-fs-sm);
+}
+
+/* Mono voice — lowercase headings (mono handoff §2). */
+h1, h2, h3, h4, h5, h6, .lower {
+  text-transform: lowercase;
+  letter-spacing: 0;
 }
