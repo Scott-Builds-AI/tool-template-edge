@@ -15,7 +15,7 @@
     "cf:deploy": "opennextjs-cloudflare build && wrangler deploy"
   },
   "dependencies": {
-    "@openkeyai/sdk": "^0.3.0",
+    "@openkeyai/sdk": "^0.4.0",
     "@openkeyai/ui": "^2.0.6",
     "next": "^16.2.6",
     "react": "^19.0.0",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240614.0",
-    "@openkeyai/tool-manifest": "^0.1.0",
+    "@openkeyai/tool-manifest": "^0.2.0",
     "@opennextjs/cloudflare": "^1.19.11",
     "@types/node": "^20",
     "@types/react": "^19",
